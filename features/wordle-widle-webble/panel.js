@@ -4,24 +4,126 @@
   const keyboard = document.getElementById("keyboard");
 
   const ROWS = 6;
+  const STORAGE_KEY = "wordle_game_states";
 
+  let currentWordId = "";
   let targetWord = "";
   let currentRow = 0;
   let currentGuess = "";
   let gameOver = false;
+  let won = false;
   let cells = [];
+  let guesses = [];
+
+  async function loadGameState(wordId) {
+    const data = await chrome.storage.local.get(STORAGE_KEY);
+    const states = data[STORAGE_KEY] || {};
+    return states[wordId] || null;
+  }
+
+  async function saveGameState() {
+    const data = await chrome.storage.local.get(STORAGE_KEY);
+    const states = data[STORAGE_KEY] || {};
+    states[currentWordId] = { word: targetWord, guesses, gameOver, won };
+    await chrome.storage.local.set({ [STORAGE_KEY]: states });
+    sendStateToPage();
+  }
+
+  async function sendStateToPage() {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (tab) {
+      const lastGuess = guesses.length > 0 ? guesses[guesses.length - 1] : null;
+      chrome.tabs.sendMessage(tab.id, {
+        type: "WORD_STATE_UPDATE",
+        wordId: currentWordId,
+        word: targetWord,
+        lastGuess,
+        won,
+      });
+    }
+  }
 
   function resetGame() {
     currentRow = 0;
     currentGuess = "";
     gameOver = false;
+    won = false;
     cells = [];
+    guesses = [];
 
-    // Reset keyboard colors
     keyboard.querySelectorAll(".key").forEach((key) => {
       key.className =
         "key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors";
     });
+  }
+
+  function getResults(guess, target) {
+    const targetLetters = target.split("");
+    const results = new Array(guess.length).fill("absent");
+
+    for (let i = 0; i < guess.length; i++) {
+      if (guess[i] === targetLetters[i]) {
+        results[i] = "correct";
+        targetLetters[i] = null;
+      }
+    }
+
+    for (let i = 0; i < guess.length; i++) {
+      if (results[i] === "correct") continue;
+      const idx = targetLetters.indexOf(guess[i]);
+      if (idx !== -1) {
+        results[i] = "present";
+        targetLetters[idx] = null;
+      }
+    }
+
+    return results;
+  }
+
+  function applyResultsToRow(rowIndex, guess, results) {
+    const rowCells = cells[rowIndex];
+    if (!rowCells) return;
+
+    for (let i = 0; i < guess.length; i++) {
+      const cell = rowCells[i];
+      cell.textContent = guess[i];
+      cell.classList.remove("border-gray-300", "border-gray-500");
+
+      if (results[i] === "correct") {
+        cell.classList.add("bg-green-500", "text-white", "border-green-500");
+      } else if (results[i] === "present") {
+        cell.classList.add("bg-yellow-500", "text-white", "border-yellow-500");
+      } else {
+        cell.classList.add("bg-gray-500", "text-white", "border-gray-500");
+      }
+
+      updateKeyboard(guess[i], results[i]);
+    }
+  }
+
+  function restoreState(state) {
+    guesses = state.guesses || [];
+    gameOver = state.gameOver || false;
+    won = state.won || false;
+    currentRow = guesses.length;
+
+    for (let i = 0; i < guesses.length; i++) {
+      const guess = guesses[i];
+      const results = getResults(guess, targetWord);
+      applyResultsToRow(i, guess, results);
+    }
+
+    if (gameOver) {
+      keyboard.classList.add("hidden");
+      if (won) {
+        selectedWordsEl.textContent = `You won! Click a new word to play again.`;
+      } else {
+        selectedWordsEl.textContent = `Game over! You'll never know the word. Click a new word to try again.`;
+      }
+    }
+
+    // Update the main page with the last guess
+    sendStateToPage();
   }
 
   function buildGrid(letterCount) {
@@ -79,55 +181,18 @@
     if (gameOver) return;
     if (currentGuess.length !== targetWord.length) return;
 
-    const target = targetWord.toUpperCase();
     const guess = currentGuess.toUpperCase();
-    const rowCells = cells[currentRow];
+    const results = getResults(guess, targetWord);
 
-    // Track which target letters have been matched
-    const targetLetters = target.split("");
-    const results = new Array(guess.length).fill("absent");
+    applyResultsToRow(currentRow, guess, results);
+    guesses.push(guess);
 
-    // First pass: find exact matches (green)
-    for (let i = 0; i < guess.length; i++) {
-      if (guess[i] === targetLetters[i]) {
-        results[i] = "correct";
-        targetLetters[i] = null; // Mark as used
-      }
-    }
-
-    // Second pass: find present letters (yellow)
-    for (let i = 0; i < guess.length; i++) {
-      if (results[i] === "correct") continue;
-
-      const idx = targetLetters.indexOf(guess[i]);
-      if (idx !== -1) {
-        results[i] = "present";
-        targetLetters[idx] = null; // Mark as used
-      }
-    }
-
-    // Apply colors to cells
-    for (let i = 0; i < guess.length; i++) {
-      const cell = rowCells[i];
-      cell.classList.remove("border-gray-300", "border-gray-500");
-
-      if (results[i] === "correct") {
-        cell.classList.add("bg-green-500", "text-white", "border-green-500");
-      } else if (results[i] === "present") {
-        cell.classList.add("bg-yellow-500", "text-white", "border-yellow-500");
-      } else {
-        cell.classList.add("bg-gray-500", "text-white", "border-gray-500");
-      }
-
-      // Update keyboard
-      updateKeyboard(guess[i], results[i]);
-    }
-
-    // Check win/lose
-    if (guess === target) {
+    if (guess === targetWord) {
       gameOver = true;
+      won = true;
       selectedWordsEl.textContent = `You won! Click a new word to play again.`;
       keyboard.classList.add("hidden");
+      saveGameState();
       return;
     }
 
@@ -139,13 +204,14 @@
       selectedWordsEl.textContent = `Game over! You'll never know the word. Click a new word to try again.`;
       keyboard.classList.add("hidden");
     }
+
+    saveGameState();
   }
 
   function updateKeyboard(letter, result) {
     const key = keyboard.querySelector(`[data-key="${letter}"]`);
     if (!key) return;
 
-    // Don't downgrade: correct > present > absent
     if (key.classList.contains("bg-green-500")) return;
     if (key.classList.contains("bg-yellow-500") && result !== "correct") return;
 
@@ -176,14 +242,12 @@
     }
   }
 
-  // Keyboard click handler
   keyboard.addEventListener("click", (e) => {
     const button = e.target.closest("[data-key]");
     if (!button) return;
     handleKey(button.dataset.key);
   });
 
-  // Physical keyboard handler
   document.addEventListener("keydown", (e) => {
     if (!targetWord) return;
 
@@ -196,13 +260,24 @@
     }
   });
 
-  chrome.runtime.onMessage.addListener((message) => {
+  chrome.runtime.onMessage.addListener(async (message) => {
     if (message.type === "WORD_SELECTED") {
+      currentWordId = message.wordId;
       targetWord = message.word.toUpperCase();
-      selectedWordsEl.textContent = `Guess the ${targetWord.length}-letter word!`;
       resetGame();
       buildGrid(targetWord.length);
-      keyboard.classList.remove("hidden");
+
+      const savedState = await loadGameState(currentWordId);
+      if (savedState) {
+        restoreState(savedState);
+      } else {
+        selectedWordsEl.textContent = `Guess the ${targetWord.length}-letter word!`;
+        keyboard.classList.remove("hidden");
+      }
+
+      if (!gameOver) {
+        keyboard.classList.remove("hidden");
+      }
     }
   });
 })();
