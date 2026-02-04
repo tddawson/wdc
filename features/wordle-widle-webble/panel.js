@@ -126,7 +126,8 @@
     // Check win/lose
     if (guess === target) {
       gameOver = true;
-      selectedWordsEl.textContent = `You won! The word was ${targetWord}`;
+      selectedWordsEl.textContent = `You won! Click a new word to play again.`;
+      keyboard.classList.add("hidden");
       return;
     }
 
@@ -135,7 +136,8 @@
 
     if (currentRow >= ROWS) {
       gameOver = true;
-      selectedWordsEl.textContent = `Game over! The word was ${targetWord}`;
+      selectedWordsEl.textContent = `Game over! You'll never know the word. Click a new word to try again.`;
+      keyboard.classList.add("hidden");
     }
   }
 
@@ -200,6 +202,7 @@
       selectedWordsEl.textContent = `Guess the ${targetWord.length}-letter word!`;
       resetGame();
       buildGrid(targetWord.length);
+      keyboard.classList.remove("hidden");
     }
   });
 })();
