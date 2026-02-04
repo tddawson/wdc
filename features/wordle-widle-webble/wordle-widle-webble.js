@@ -80,5 +80,7 @@
 
   initialize();
 
-  window.WDC.cleanup = function () {};
+  window.WDC.cleanup = function () {
+    location.reload();
+  };
 })();
