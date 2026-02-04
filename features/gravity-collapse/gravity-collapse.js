@@ -9,24 +9,11 @@
   let bounciness = 0.75;
   let magnetEnabled = false;
 
-  // Ensure Matter.js is loaded
-  const loadMatter = () => {
-    return new Promise((resolve, reject) => {
-      if (typeof Matter !== "undefined") {
-        resolve();
-        return;
-      }
-      const script = document.createElement("script");
-      script.src =
-        "https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js";
-      script.onload = resolve;
-      script.onerror = reject;
-      document.head.appendChild(script);
-    });
-  };
-
   const initPhysics = async () => {
-    await loadMatter();
+    if (typeof Matter === "undefined") {
+      console.error("Matter.js not loaded");
+      return;
+    }
 
     const {
       Engine,
@@ -245,9 +232,6 @@
 
     elementsWithPhysics = [];
     isGravityActive = false;
-
-    const script = document.querySelector('script[src*="matter.min.js"]');
-    if (script) script.remove();
   };
 
   const handleMessage = async (type, payload) => {
@@ -303,4 +287,10 @@
     const { type, payload } = event.data;
     handleMessage(type, payload);
   });
+
+  // Cleanup function for when feature is deactivated
+  window.WDC = window.WDC || {};
+  window.WDC.cleanup = function () {
+    reset();
+  };
 })();
