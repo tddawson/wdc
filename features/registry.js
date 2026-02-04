@@ -23,5 +23,12 @@ const FEATURES = [
     description: "Find and replace text content on the page.",
     panelPath: "features/dom-swapper/panel.html",
     scripts: ["utils/index.js", "utils/dom.js", "utils/storage.js", "features/dom-swapper/dom-swapper.js"]
+  },
+  {
+    id: "wordle-widle-webble",
+    name: "Wordle Widle Webble",
+    description: "A fun word game feature.",
+    panelPath: "features/wordle-widle-webble/panel.html",
+    scripts: ["utils/index.js", "utils/dom.js", "utils/storage.js", "features/wordle-widle-webble/wordle-widle-webble.js"]
   }
 ];

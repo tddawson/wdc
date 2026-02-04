@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1ff968",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#0f2316",
+                        "panel-dark": "#111813",
+                        "accent-muted": "#273a2d",
+                        "text-muted": "#9bbba6"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .physics-pile {
+            transform: rotate(-3deg);
+        }
+        .physics-pile-alt {
+            transform: rotate(5deg);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- Main Content Area: Collapsed Wikipedia Page -->
+<main class="flex-1 relative overflow-hidden p-8 bg-white dark:bg-[#1a1a1a]">
+<!-- Fake Browser Header -->
+<div class="absolute top-0 left-0 right-0 h-12 bg-gray-100 dark:bg-[#222] border-b border-gray-200 dark:border-gray-800 flex items-center px-4 gap-4 z-10">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-red-400"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+<div class="w-3 h-3 rounded-full bg-green-400"></div>
+</div>
+<div class="bg-white dark:bg-[#333] rounded-md px-3 py-1 text-xs text-gray-500 w-96 border border-gray-200 dark:border-gray-700">
+                    en.wikipedia.org/wiki/Gravity
+                </div>
+</div>
+<!-- Chaotic Heap of Elements -->
+<div class="absolute inset-0 flex flex-col justify-end p-10 pb-20">
+<div class="relative w-full h-1/2">
+<!-- Pile of Wikipedia Elements -->
+<div class="absolute bottom-4 left-10 p-6 bg-white dark:bg-zinc-800 shadow-xl border border-gray-200 dark:border-zinc-700 w-80 physics-pile z-20">
+<h2 class="text-xl font-bold mb-2">Gravity</h2>
+<p class="text-sm opacity-70 leading-relaxed">From Wikipedia, the free encyclopedia. Gravity (from Latin gravitas 'weight'), or gravitation, is a natural phenomenon...</p>
+</div>
+<div class="absolute bottom-10 left-60 p-4 bg-gray-50 dark:bg-zinc-900 shadow-lg border border-gray-200 dark:border-zinc-700 w-64 physics-pile-alt z-10">
+<div class="w-full h-32 bg-gray-200 dark:bg-zinc-700 mb-2" data-alt="Physics diagram of gravity vectors"></div>
+<p class="text-xs italic">Fig 1.1: Spacetime curvature around a massive object.</p>
+</div>
+<div class="absolute bottom-0 left-[450px] p-5 bg-white dark:bg-zinc-800 shadow-xl border border-gray-200 dark:border-zinc-700 w-96 physics-pile z-30">
+<p class="text-sm">In 1915, Albert Einstein published his theory of general relativity, which explains gravity not as a force, but as the consequence of the curvature of spacetime caused by the uneven distribution of mass.</p>
+</div>
+<div class="absolute bottom-8 right-20 p-4 bg-primary text-background-dark font-bold shadow-2xl physics-pile-alt z-40">
+<p class="text-lg uppercase tracking-wider">Chaos Enabled</p>
+</div>
+<div class="absolute bottom-2 right-64 p-3 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 w-48 physics-pile z-10">
+<div class="h-2 w-full bg-gray-200 dark:bg-zinc-700 rounded mb-2"></div>
+<div class="h-2 w-3/4 bg-gray-200 dark:bg-zinc-700 rounded mb-2"></div>
+<div class="h-2 w-1/2 bg-gray-200 dark:bg-zinc-700 rounded"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sidebar UI -->
+<aside class="w-96 h-full bg-panel-dark border-l border-white/10 flex flex-col">
+<div class="layout-content-container flex flex-col flex-1 overflow-y-auto">
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between gap-3 p-6 border-b border-white/5">
+<div class="flex min-w-72 flex-col gap-1">
+<p class="text-white tracking-light text-2xl font-bold leading-tight font-display">Gravity Collapse</p>
+<p class="text-text-muted text-xs font-medium uppercase tracking-widest">Physics Lab v2.4</p>
+</div>
+</div>
+<!-- Global Controls Section -->
+<h2 class="text-white text-[18px] font-bold leading-tight tracking-tight px-6 pb-2 pt-6">Global Controls</h2>
+<!-- Gravity Direction Selector -->
+<div class="px-6 py-2">
+<p class="text-text-muted text-xs font-medium leading-normal mb-2 uppercase tracking-wider">Gravity Direction</p>
+<div class="flex h-12 items-center justify-center rounded-xl bg-accent-muted p-1">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-panel-dark has-[:checked]:text-primary text-text-muted transition-all">
+<span class="material-symbols-outlined">north</span>
+<input class="hidden" name="direction" type="radio" value="Up"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-panel-dark has-[:checked]:text-primary text-text-muted transition-all">
+<span class="material-symbols-outlined">south</span>
+<input checked="" class="hidden" name="direction" type="radio" value="Down"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-panel-dark has-[:checked]:text-primary text-text-muted transition-all">
+<span class="material-symbols-outlined">west</span>
+<input class="hidden" name="direction" type="radio" value="Left"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-panel-dark has-[:checked]:text-primary text-text-muted transition-all">
+<span class="material-symbols-outlined">east</span>
+<input class="hidden" name="direction" type="radio" value="Right"/>
+</label>
+</div>
+</div>
+<!-- Simulation Settings -->
+<div class="px-6 py-4 flex flex-col gap-6">
+<!-- Gravity Strength Slider -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<p class="text-text-muted text-xs font-medium uppercase tracking-wider">Gravity Strength</p>
+<span class="text-primary text-sm font-bold">9.8 m/s²</span>
+</div>
+<input class="w-full h-2 bg-accent-muted rounded-lg appearance-none cursor-pointer accent-primary" max="50" min="0" type="range" value="9.8"/>
+</div>
+<!-- Bounciness Slider -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<p class="text-text-muted text-xs font-medium uppercase tracking-wider">Bounciness</p>
+<span class="text-primary text-sm font-bold">75%</span>
+</div>
+<input class="w-full h-2 bg-accent-muted rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="0" type="range" value="75"/>
+</div>
+</div>
+<!-- Tools Section -->
+<h2 class="text-white text-[18px] font-bold leading-tight tracking-tight px-6 pb-2 pt-4">Experimental Tools</h2>
+<div class="px-6 py-2 flex flex-col gap-3">
+<!-- Shake Page Button -->
+<button class="flex w-full cursor-pointer items-center justify-between rounded-xl h-14 px-5 bg-accent-muted hover:bg-accent-muted/80 transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">vibration</span>
+<span class="text-white text-sm font-bold">Shake Page</span>
+</div>
+<span class="text-[10px] text-text-muted border border-text-muted/30 px-1.5 py-0.5 rounded">SPACE</span>
+</button>
+<!-- Magnet Tool Toggle -->
+<label class="flex w-full cursor-pointer items-center justify-between rounded-xl h-14 px-5 bg-accent-muted has-[:checked]:bg-primary/20 transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-white">nest_cam_magnet_mount</span>
+<span class="text-white text-sm font-bold">Magnet Tool</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-panel-dark peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+</div>
+<!-- Navigation Sidebar Links -->
+<div class="mt-auto flex flex-col gap-1 p-6 border-t border-white/5">
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 text-text-muted hover:text-white cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-lg">house</span>
+<p class="text-sm font-medium">Home</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary cursor-pointer">
+<span class="material-symbols-outlined text-lg">science</span>
+<p class="text-sm font-medium">Laboratory</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 text-text-muted hover:text-white cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-lg">save</span>
+<p class="text-sm font-medium">Saved States</p>
+</div>
+<button class="mt-4 flex w-full cursor-pointer items-center justify-center rounded-xl h-12 bg-primary text-background-dark text-sm font-bold tracking-tight hover:brightness-110 transition-all">
+                        Exit Lab Mode
+                    </button>
+</div>
+</div>
+</aside>
+</div>
+</body></html>
