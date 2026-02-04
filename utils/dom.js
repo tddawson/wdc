@@ -59,7 +59,24 @@
     return elements.length;
   }
 
+  /**
+   * Replace all text nodes under root with new elements.
+   * newElCreator is a function that receives the text node and returns a new element.
+   */
+  function replaceTextNodes(root, newElCreator) {
+    const textNodes = getTextNodes(root);
+    textNodes.forEach((node) => {
+      const replacement = newElCreator(node);
+      if (replacement) {
+        node.parentNode.replaceChild(replacement, node);
+      }
+    });
+    return textNodes.length;
+  }
+
+  window.WDC.getTextNodes = getTextNodes;
   window.WDC.findText = findText;
   window.WDC.findWords = findWords;
   window.WDC.replaceElements = replaceElements;
+  window.WDC.replaceTextNodes = replaceTextNodes;
 })();

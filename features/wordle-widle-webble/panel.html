@@ -1,14 +1,282 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <style>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/tailwind.js"></script>
+    <style></style>
+  </head>
+  <body>
+    <div
+      class="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between"
+    >
+      <h2 class="font-bold tracking-wider text-xl">WIKIWORDLE</h2>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center p-4">
+      <div class="mb-4 text-center">
+        <span
+          class="inline-block px-2 py-0.5 rounded bg-primary text-white text-[10px] font-bold tracking-widest uppercase mb-1"
+          >Active Game</span
+        >
+        <p class="text-xs text-gray-500 dark:text-gray-400">
+          Guess the highlighted word in the article
+        </p>
+      </div>
+      <div class="grid grid-rows-6 gap-1.5 mb-8">
+        <div class="grid grid-cols-5 gap-1.5">
+          <div
+            class="w-12 h-12 border-2 border-gray-400 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-400 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded animate-pulse border-primary"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
+          ></div>
+        </div>
+        <div class="grid grid-cols-5 gap-1.5">
+          <div
+            class="w-12 h-12 border-2 border-gray-400 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-400 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded animate-pulse border-primary"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
+          ></div>
+        </div>
+        <div class="grid grid-cols-5 gap-1.5">
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+        </div>
+        <div class="grid grid-cols-5 gap-1.5">
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+        </div>
+        <div class="grid grid-cols-5 gap-1.5">
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+        </div>
+        <div class="grid grid-cols-5 gap-1.5">
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+          <div
+            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
+          ></div>
+        </div>
+      </div>
+      <div class="w-full max-w-sm space-y-2">
+        <div class="flex justify-center gap-1.5">
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            Q
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            W
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            E
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            R
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            T
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            Y
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            U
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            I
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            O
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            P
+          </button>
+        </div>
+        <div class="flex justify-center gap-1.5">
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            A
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            S
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            D
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            F
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            G
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            H
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            J
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            K
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            L
+          </button>
+        </div>
+        <div class="flex justify-center gap-1.5">
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            Z
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            X
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            C
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            V
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            B
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            N
+          </button>
+          <button
+            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            M
+          </button>
+        </div>
+        <div class="flex justify-center gap-1.5">
+          <button
+            class="h-12 px-3 bg-gray-200 hover:bg-gray-300 rounded text-[10px] font-bold transition-colors"
+          >
+            ENTER
+          </button>
+          <button
+            class="h-12 px-3 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
+          >
+            <span class="material-icons text-lg leading-none">backspace</span>
+          </button>
+        </div>
+      </div>
+    </div>
 
-  </style>
-</head>
-<body>
-  <h2>Wordle Widle Webble</h2>
-  
-  <script src="panel.js"></script>
-</body>
+    <script src="panel.js"></script>
+  </body>
 </html>

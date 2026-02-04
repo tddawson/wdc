@@ -1,3 +1,3 @@
-(function() {
-    console.log('check')
+(function () {
+  console.log("Wordle panel");
 })();
