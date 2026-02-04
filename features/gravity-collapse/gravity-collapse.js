@@ -250,13 +250,7 @@
     if (script) script.remove();
   };
 
-  // Message Listener
-  window.addEventListener("message", async (event) => {
-    // Basic security check (allow same origin)
-    // if (event.origin !== window.location.origin) return;
-
-    const { type, payload } = event.data;
-
+  const handleMessage = async (type, payload) => {
     switch (type) {
       case "ACTIVATE_GRAVITY":
         if (!isGravityActive) {
@@ -287,5 +281,26 @@
         reset();
         break;
     }
+  };
+
+  // Listen for messages from the side panel (via background/tabs API)
+  if (
+    typeof chrome !== "undefined" &&
+    chrome.runtime &&
+    chrome.runtime.onMessage
+  ) {
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      handleMessage(message.type, message.payload);
+      sendResponse({ received: true });
+    });
+  }
+
+  // Message Listener
+  window.addEventListener("message", async (event) => {
+    // Basic security check (allow same origin)
+    // if (event.origin !== window.location.origin) return;
+
+    const { type, payload } = event.data;
+    handleMessage(type, payload);
   });
 })();
