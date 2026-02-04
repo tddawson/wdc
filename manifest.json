@@ -14,7 +14,7 @@
     "default_title": "WDC Tools"
   },
   "side_panel": {
-    "default_path": "features/highlighter/panel.html"
+    "default_path": "features/wordle-widle-webble/panel.html"
   },
   "background": {
     "service_worker": "background.js"

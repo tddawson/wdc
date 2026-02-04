@@ -9,7 +9,7 @@
     <div
       class="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between"
     >
-      <h2 class="font-bold tracking-wider text-xl">WIKIWORDLE</h2>
+      <h2 class="font-bold tracking-wider text-xl">Wordle Widle Webble</h2>
     </div>
     <div class="flex-1 flex flex-col items-center justify-center p-4">
       <div class="mb-4 text-center">
@@ -25,154 +25,42 @@
         <span class="text-xs text-gray-400">Click a word on the page</span>
       </div>
       <div id="letter-grid" class="gap-1.5 mb-8 hidden"></div>
-      <div class="w-full max-w-sm space-y-2">
+      <div id="keyboard" class="w-full max-w-sm space-y-2">
         <div class="flex justify-center gap-1.5">
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            Q
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            W
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            E
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            R
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            T
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            Y
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            U
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            I
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            O
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            P
-          </button>
+          <button data-key="Q" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">Q</button>
+          <button data-key="W" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">W</button>
+          <button data-key="E" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">E</button>
+          <button data-key="R" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">R</button>
+          <button data-key="T" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">T</button>
+          <button data-key="Y" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">Y</button>
+          <button data-key="U" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">U</button>
+          <button data-key="I" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">I</button>
+          <button data-key="O" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">O</button>
+          <button data-key="P" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">P</button>
         </div>
         <div class="flex justify-center gap-1.5">
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            A
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            S
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            D
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            F
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            G
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            H
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            J
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            K
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            L
-          </button>
+          <button data-key="A" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">A</button>
+          <button data-key="S" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">S</button>
+          <button data-key="D" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">D</button>
+          <button data-key="F" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">F</button>
+          <button data-key="G" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">G</button>
+          <button data-key="H" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">H</button>
+          <button data-key="J" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">J</button>
+          <button data-key="K" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">K</button>
+          <button data-key="L" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">L</button>
         </div>
         <div class="flex justify-center gap-1.5">
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            Z
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            X
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            C
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            V
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            B
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            N
-          </button>
-          <button
-            class="h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            M
-          </button>
+          <button data-key="Z" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">Z</button>
+          <button data-key="X" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">X</button>
+          <button data-key="C" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">C</button>
+          <button data-key="V" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">V</button>
+          <button data-key="B" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">B</button>
+          <button data-key="N" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">N</button>
+          <button data-key="M" class="key h-12 w-8 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">M</button>
         </div>
         <div class="flex justify-center gap-1.5">
-          <button
-            class="h-12 px-3 bg-gray-200 hover:bg-gray-300 rounded text-[10px] font-bold transition-colors"
-          >
-            ENTER
-          </button>
-          <button
-            class="h-12 px-3 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors"
-          >
-            <span class="material-icons text-lg leading-none">backspace</span>
-          </button>
+          <button data-key="ENTER" class="h-12 px-3 bg-gray-200 hover:bg-gray-300 rounded text-[10px] font-bold transition-colors">ENTER</button>
+          <button data-key="BACKSPACE" class="h-12 px-3 bg-gray-200 hover:bg-gray-300 rounded text-xs font-bold transition-colors">←</button>
         </div>
       </div>
     </div>
