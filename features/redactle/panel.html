@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="/tailwind.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        .redacted {
+            background-color: #111418;
+            color: transparent;
+            border-radius: 2px;
+            user-select: none;
+        }
+
+        .dark .redacted {
+            background-color: #ffffff;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-[#111418] dark:text-white transition-colors duration-200">
+    <div class="relative flex min-h-screen w-full">
+        <!-- Redacted Mode Extension Sidebar (Fixed Right) -->
+        <div class="w-[380px] h-screen bg-[#111418] border-l border-white/10 flex flex-col shadow-2xl z-50">
+            <div class="p-6 border-b border-white/10 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-primary rounded-lg">
+                        <span class="material-symbols-outlined text-white">visibility_off</span>
+                    </div>
+                    <div>
+                        <h2 class="text-white text-lg font-bold leading-none">Redacted Mode</h2>
+                        <span class="text-primary text-[10px] font-bold tracking-widest uppercase">Active
+                            Protocol</span>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button class="p-2 hover:bg-white/10 rounded-lg text-white/60">
+                        <span class="material-symbols-outlined text-sm">close</span>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6 flex flex-col gap-6 grow overflow-y-auto">
+                <!-- Guess Input Area -->
+                <div class="flex flex-col gap-3">
+                    <label class="text-white/60 text-xs font-bold uppercase tracking-wider">Crack the code</label>
+                    <div class="flex gap-2">
+                        <input
+                            class="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                            placeholder="Guess a word..." type="text" id="guessInput"/>
+                        <button
+                            class="bg-primary hover:bg-primary/90 text-white font-bold px-6 py-3 rounded-lg transition-colors flex items-center gap-2" id="reveal-btn">
+                            Reveal
+                        </button>
+                    </div>
+                </div>
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- <div class="bg-white/5 border border-white/10 p-3 rounded-xl">
+                        <span class="text-white/40 text-[10px] uppercase font-bold">Completion</span>
+                        <div class="flex items-end gap-2 mt-1">
+                            <span class="text-white text-xl font-bold leading-none" id="completionPercent">4.2%</span>
+                            <span class="text-primary text-[10px] pb-0.5" id="completionChange">▲ 0.8%</span>
+                        </div>
+                    </div> -->
+                    <div class="bg-white/5 border border-white/10 p-3 rounded-xl">
+                        <span class="text-white/40 text-[10px] uppercase font-bold">Attempts</span>
+                        <div class="flex items-end gap-2 mt-1">
+                            <span class="text-white text-xl font-bold leading-none" id="attemptsCount">0</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- History Section -->
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-white text-sm font-bold">Recent History</h3>
+                        <span class="text-white/40 text-[10px] font-medium" id="clearHistoryBtn">Clear All</span>
+                    </div>
+                    <div class="flex flex-col gap-2" id="hitContainer">
+                        <!-- History items will be appended here -->
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 mt-auto border-t border-white/10 bg-black/20">
+                <div class="flex items-center justify-between">
+                    <div class="flex flex-col">
+                        <span class="text-white/40 text-[10px] uppercase font-bold">Time Active</span>
+                        <span class="text-white font-mono font-medium">00:14:42</span>
+                    </div>
+                    <button
+                        class="bg-white/10 hover:bg-white/20 text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors">
+                        Give Up
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="panel.js"></script>
+</body>
+
+</html>

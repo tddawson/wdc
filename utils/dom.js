@@ -45,6 +45,23 @@
   }
 
   /**
+   * Returns an array of unique words on the page (case-insensitive).
+   */
+  function findUniqueWords() {
+    const words = findWords();
+    const seen = new Set();
+    const unique = [];
+    for (const word of words) {
+      const lower = word.toLowerCase();
+      if (!seen.has(lower)) {
+        seen.add(lower);
+        unique.push(word);
+      }
+    }
+    return unique;
+  }
+
+  /**
    * Replace all elements matching a CSS selector with a new element.
    * newElCreator is a function that receives the old element and returns a new one.
    */
@@ -136,6 +153,7 @@
   window.WDC.getTextNodes = getTextNodes;
   window.WDC.findText = findText;
   window.WDC.findWords = findWords;
+  window.WDC.findUniqueWords = findUniqueWords;
   window.WDC.replaceElements = replaceElements;
   window.WDC.replaceTextNodes = replaceTextNodes;
   window.WDC.getVisibleElements = getVisibleElements;
