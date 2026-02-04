@@ -23,5 +23,12 @@ const FEATURES = [
     description: "Find and replace text content on the page.",
     panelPath: "features/dom-swapper/panel.html",
     scripts: ["utils/index.js", "utils/dom.js", "utils/storage.js", "features/dom-swapper/dom-swapper.js"]
+  },
+  {
+    id: "redactle",
+    name: "Redactle",
+    description: "Redact words on the page to create a guessing game.",
+    panelPath: "features/redactle/panel.html",
+    scripts: ["utils/index.js", "utils/dom.js", "utils/storage.js", "features/redactle/redactle.js"]
   }
 ];
