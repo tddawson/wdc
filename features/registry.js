@@ -30,5 +30,12 @@ const FEATURES = [
     description: "A fun word game feature.",
     panelPath: "features/wordle-widle-webble/panel.html",
     scripts: ["utils/index.js", "utils/dom.js", "utils/storage.js", "features/wordle-widle-webble/wordle-widle-webble.js"]
+  },
+  {
+    id: "redactle",
+    name: "Redactle",
+    description: "Redact words on the page to create a guessing game.",
+    panelPath: "features/redactle/panel.html",
+    scripts: ["utils/index.js", "utils/dom.js", "utils/storage.js", "features/redactle/redactle.js"]
   }
 ];
