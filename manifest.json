@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "WDC - Web Dev Companion",
+  "version": "1.0.0",
+  "description": "Modular web development tools: highlighter, word counter, DOM swapper, and more.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "sidePanel",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "WDC Tools"
+  },
+  "side_panel": {
+    "default_path": "features/highlighter/panel.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {}
+}
