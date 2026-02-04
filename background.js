@@ -31,9 +31,8 @@ async function handleActivateFeature(featureId, tabId) {
   // Save active feature
   await chrome.storage.sync.set({ activeFeature: featureId });
 
-  // Swap side panel
+  // Set side panel path (opening is done from popup to preserve user gesture)
   await chrome.sidePanel.setOptions({ path: feature.panelPath });
-  await chrome.sidePanel.open({ tabId });
 
   // Inject utils then feature script
   await chrome.scripting.executeScript({

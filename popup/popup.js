@@ -33,6 +33,8 @@
         featureId: feature.id,
         tabId: tab.id
       });
+      // Open side panel from popup to preserve user gesture context
+      await chrome.sidePanel.open({ windowId: tab.windowId });
     }
   }
 })();
