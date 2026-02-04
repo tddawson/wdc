@@ -6,7 +6,6 @@ const FEATURES = [
   {
     id: "wordle-widle-webble",
     name: "Wordle Widle Webble",
-    description: "A fun word game feature.",
     panelPath: "features/wordle-widle-webble/panel.html",
     scripts: [
       "utils/index.js",
@@ -18,7 +17,6 @@ const FEATURES = [
   {
     id: "redactle",
     name: "Redactle",
-    description: "Redact words on the page to create a guessing game.",
     panelPath: "features/redactle/panel.html",
     scripts: [
       "utils/index.js",
@@ -30,7 +28,6 @@ const FEATURES = [
   {
     id: "gravity-collapse",
     name: "Gravity Collapse",
-    description: "Apply physics and gravity to page elements for chaotic fun.",
     panelPath: "features/gravity-collapse/panel.html",
     scripts: [
       "utils/index.js",

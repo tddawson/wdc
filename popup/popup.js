@@ -14,7 +14,7 @@
     const btn = document.createElement("button");
     btn.className =
       "feature-btn" + (activeFeature === feature.id ? " active" : "");
-    btn.innerHTML = `<span class="name">${feature.name}</span><span class="desc">${feature.description}</span>`;
+    btn.innerHTML = `<span class="name">${feature.name}</span>`;
     btn.addEventListener("click", () => handleClick(feature, btn));
     list.appendChild(btn);
   }
