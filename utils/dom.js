@@ -74,9 +74,70 @@
     return textNodes.length;
   }
 
+  const getVisibleElements = () => {
+    const elements = Array.from(
+      document.querySelectorAll("p, img, h1, h2, h3, h4, h5, h6, div, li"),
+    );
+
+    return elements.filter((el) => {
+      const rect = el.getBoundingClientRect();
+      const style = window.getComputedStyle(el);
+
+      // Check visibility
+      if (
+        rect.width === 0 ||
+        rect.height === 0 ||
+        style.display === "none" ||
+        style.visibility === "hidden" ||
+        style.opacity === "0"
+      ) {
+        return false;
+      }
+
+      // Size constraint
+      if (el.offsetHeight <= 20) {
+        return false;
+      }
+
+      // Exclude fixed/sticky
+      if (style.position === "fixed" || style.position === "sticky") {
+        return false;
+      }
+
+      // Exclude panel if possible (assuming panel has a specific class or id, but for now generic)
+      if (el.closest(".gravity-collapse-panel")) {
+        return false;
+      }
+
+      // Prioritize content-heavy elements (simple heuristic: has text or is image)
+      if (el.tagName === "IMG") return true;
+      if (el.innerText.trim().length > 0) return true;
+
+      return false;
+    });
+  };
+
+  const getElementMetrics = (el) => {
+    const rect = el.getBoundingClientRect();
+    const style = window.getComputedStyle(el);
+    return {
+      rect,
+      style,
+      originalPosition: {
+        top: style.top,
+        left: style.left,
+        position: style.position,
+        transform: style.transform,
+        zIndex: style.zIndex,
+      },
+    };
+  };
+
   window.WDC.getTextNodes = getTextNodes;
   window.WDC.findText = findText;
   window.WDC.findWords = findWords;
   window.WDC.replaceElements = replaceElements;
   window.WDC.replaceTextNodes = replaceTextNodes;
+  window.WDC.getVisibleElements = getVisibleElements;
+  window.WDC.getElementMetrics = getElementMetrics;
 })();
