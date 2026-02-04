@@ -92,9 +92,8 @@
   }
 
   const getVisibleElements = () => {
-    const elements = Array.from(
-      document.querySelectorAll("p, img, h1, h2, h3, h4, h5, h6, div, li"),
-    );
+    const selectors = "p, img, h1, h2, h3, h4, h5, h6, li, blockquote, figure";
+    const elements = Array.from(document.querySelectorAll(selectors));
 
     return elements.filter((el) => {
       const rect = el.getBoundingClientRect();
@@ -111,8 +110,13 @@
         return false;
       }
 
-      // Size constraint
-      if (el.offsetHeight <= 20) {
+      // Size constraint - must be reasonably sized
+      if (rect.width < 20 || rect.height < 10) {
+        return false;
+      }
+
+      // Must be in viewport
+      if (rect.bottom < 0 || rect.top > window.innerHeight) {
         return false;
       }
 
@@ -121,16 +125,12 @@
         return false;
       }
 
-      // Exclude panel if possible (assuming panel has a specific class or id, but for now generic)
-      if (el.closest(".gravity-collapse-panel")) {
+      // Skip elements that contain other candidate elements (avoid parent/child duplication)
+      if (el.querySelector(selectors)) {
         return false;
       }
 
-      // Prioritize content-heavy elements (simple heuristic: has text or is image)
-      if (el.tagName === "IMG") return true;
-      if (el.innerText.trim().length > 0) return true;
-
-      return false;
+      return true;
     });
   };
 

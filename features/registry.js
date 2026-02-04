@@ -35,6 +35,7 @@ const FEATURES = [
     scripts: [
       "utils/index.js",
       "utils/dom.js",
+      "matter.js",
       "features/gravity-collapse/gravity-collapse.js",
     ],
   },
