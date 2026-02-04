@@ -31,10 +31,6 @@ async function handleActivateFeature(featureId, tabId) {
   // Save active feature
   await chrome.storage.sync.set({ activeFeature: featureId });
 
-  // Swap side panel
-  await chrome.sidePanel.setOptions({ path: feature.panelPath });
-  await chrome.sidePanel.open({ tabId });
-
   // Inject utils then feature script
   await chrome.scripting.executeScript({
     target: { tabId },

@@ -28,6 +28,11 @@
       });
     } else {
       btn.classList.add("active");
+
+      // Open side panel (requires user gesture)
+      await chrome.sidePanel.setOptions({ path: feature.panelPath });
+      await chrome.sidePanel.open({ tabId: tab.id });
+
       await chrome.runtime.sendMessage({
         type: "ACTIVATE_FEATURE",
         featureId: feature.id,
