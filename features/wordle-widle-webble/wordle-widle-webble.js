@@ -49,6 +49,9 @@
       } else if (part) {
         const wordSpan = document.createElement("span");
         wordSpan.className = "word-wrapper";
+        wordSpan.onclick = () => {
+          chrome.runtime.sendMessage({ type: "WORD_SELECTED", word: part });
+        };
         wrapLetters(part, wordSpan);
         container.appendChild(wordSpan);
       }

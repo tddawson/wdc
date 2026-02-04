@@ -21,110 +21,13 @@
           Guess the highlighted word in the article
         </p>
       </div>
-      <div class="grid grid-rows-6 gap-1.5 mb-8">
-        <div class="grid grid-cols-5 gap-1.5">
-          <div
-            class="w-12 h-12 border-2 border-gray-400 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-400 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded animate-pulse border-primary"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
-          ></div>
-        </div>
-        <div class="grid grid-cols-5 gap-1.5">
-          <div
-            class="w-12 h-12 border-2 border-gray-400 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-400 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded animate-pulse border-primary"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-2xl font-bold rounded"
-          ></div>
-        </div>
-        <div class="grid grid-cols-5 gap-1.5">
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-        </div>
-        <div class="grid grid-cols-5 gap-1.5">
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-        </div>
-        <div class="grid grid-cols-5 gap-1.5">
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-        </div>
-        <div class="grid grid-cols-5 gap-1.5">
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-          <div
-            class="w-12 h-12 border-2 border-gray-200 dark:border-gray-800 flex items-center justify-center rounded"
-          ></div>
-        </div>
+      <div
+        id="selected-words"
+        class="mb-4 p-2 bg-gray-100 rounded min-h-[2rem] w-full max-w-sm text-center"
+      >
+        <span class="text-xs text-gray-400">Click a word on the page</span>
       </div>
+      <div id="letter-grid" class="gap-1.5 mb-8 hidden"></div>
       <div class="w-full max-w-sm space-y-2">
         <div class="flex justify-center gap-1.5">
           <button
