@@ -50,7 +50,7 @@
     const template = document.createElement('template');
     countText = `${response.count} hit${response.count === 1 ? "" : "s"}`;
     template.innerHTML = hitHTML(query, countText).trim();
-    hitContainer.appendChild(template.content.firstChild);
+    hitContainer.prepend(template.content.firstChild);
 
     guessInput.value = "";
     guessInput.focus();
