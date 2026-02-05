@@ -10,17 +10,20 @@
       .word-wrapper {
         display: inline-block;
         cursor: pointer;
+        margin-right: 3px;
       }
       .letter-wrapper {
         background-color: white !important;
         color: white !important;
-        border: 1px solid black !important;
+        border: 1px solid #d1d5db !important;
         display: inline-block;
         min-width: 1em;
         text-align: center;
         margin-right: 1px;
         font-family: monospace;
         user-select: none;
+        border-radius: 3px;
+        text-shadow: none !important;
       }
       .letter-wrapper.correct {
         background-color: #22c55e !important;
