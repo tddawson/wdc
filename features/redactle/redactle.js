@@ -2,22 +2,8 @@
   const REDACTED_CLASS = "wdc-redacted";
   let initialRedactedCount = 0;
 
-  function getTextNodes(root) {
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
-    const nodes = [];
-    let node;
-    while ((node = walker.nextNode())) {
-      if (node.nodeValue.trim()) nodes.push(node);
-    }
-    return nodes;
-  }
-
   function redactWords() {
-    console.log("Redactle script loaded");
-    const words = window.WDC.findUniqueWords();
-    console.log(`Found ${words.length} words to redact.`);
-    console.log(words);
-    const textNodes = getTextNodes(document.body);
+    const textNodes = window.WDC.getTextNodes(document.body);
 
     for (const node of textNodes) {
       const text = node.nodeValue;
@@ -52,10 +38,8 @@
   }
 
   function revealWord(word) {
-    const hits = window.WDC.findText(word);
-    console.log("Hits for", word);
-    console.log(hits);
-    const hitRedactions = hits.map(({ node }) => {
+    const hits = window.WDC.findExactText(word);
+    const hitRedactions = hits.map((node) => {
       let el = node.parentNode;
       while (el && !el.classList.contains(REDACTED_CLASS)) {
         el = el.parentNode;
@@ -81,9 +65,7 @@
   }
 
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log("Received message:", message);
     if (message.type === "REVEAL_WORD") {
-      console.log("Received REVEAL_WORD message:", message);
       const { hitCount, remainingRedacted } = revealWord(message.query);
       sendResponse({ count: hitCount, remainingRedacted });
     } else if (message.type === "CLEAR_REDACTIONS") {

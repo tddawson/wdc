@@ -6,6 +6,7 @@
   const attemptsCount = document.getElementById("attemptsCount");
   const clearHistoryBtn = document.getElementById("clearHistoryBtn");
   const giveUpBtn = document.getElementById("give-up-btn");
+  const guesses = new Set();
 
   setItem("redactleAttempts", 0);
 
@@ -26,9 +27,10 @@
   initRedactionStats();
 
   revealBtn.addEventListener("click", async () => {
-    console.log("Reveal word clicked");
     const query = guessInput.value.trim();
     if (!query) return;
+    if (guesses.has(query.toLowerCase())) return; // prevent duplicate guesses
+    guesses.add(query.toLowerCase());
     const tab = await getActiveTab();
     const response = await chrome.tabs.sendMessage(tab.id, {
       type: "REVEAL_WORD",
@@ -36,9 +38,7 @@
     });
 
     let attempts = getItem("redactleAttempts")
-    console.log("Current attempts:", attempts);
     attempts = (attempts || 0) + 1;
-    console.log("Updated attempts:", attempts);
     setItem("redactleAttempts", attempts);
     attemptsCount.textContent = attempts;
     ;
@@ -60,14 +60,9 @@
     const currentRedacted = getItem("redactleCurrentRedacted") || 0;
     const completion = ((initialRedacted - currentRedacted) / initialRedacted) * 100;
     completionPercent.textContent = `${completion.toFixed(1)}%`;
-
-
-
-    // result.textContent = `Found ${response.count} hit${response.count === 1 ? "" : "s"}.`;
   });
 
   giveUpBtn.addEventListener("click", async () => {
-    console.log("Give up clicked");
     const tab = await getActiveTab();
     await chrome.tabs.sendMessage(tab.id, { type: "CLEAR_REDACTIONS" });
     // Reset attempts
@@ -79,13 +74,6 @@
     const hitContainer = document.getElementById("hitContainer");
     hitContainer.innerHTML = "";
   });
-
-  // clearBtn.addEventListener("click", async () => {
-  //   console.log("Reveal word clicked");
-  //   const tab = await getActiveTab();
-  //   await chrome.tabs.sendMessage(tab.id, { type: "REVEAL_WORD" });
-  //   result.textContent = "Highlights cleared.";
-  // });
 
   guessInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") revealBtn.click();

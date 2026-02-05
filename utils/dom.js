@@ -32,6 +32,17 @@
   }
 
   /**
+   * Find all text nodes whose trimmed content exactly matches the query (case-insensitive).
+   * Returns an array of matching text nodes.
+   */
+  function findExactText(query) {
+    if (!query) return [];
+    const lower = query.toLowerCase().trim();
+    const textNodes = getTextNodes(document.body);
+    return textNodes.filter((node) => node.nodeValue.trim().toLowerCase() === lower);
+  }
+
+  /**
    * Returns an array of all individual words on the page.
    */
   function findWords() {
@@ -152,6 +163,7 @@
 
   window.WDC.getTextNodes = getTextNodes;
   window.WDC.findText = findText;
+  window.WDC.findExactText = findExactText;
   window.WDC.findWords = findWords;
   window.WDC.findUniqueWords = findUniqueWords;
   window.WDC.replaceElements = replaceElements;
