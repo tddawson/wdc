@@ -1,5 +1,6 @@
 (function () {
   const REDACTED_CLASS = "wdc-redacted";
+  let initialRedactedCount = 0;
 
   function getTextNodes(root) {
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
@@ -46,6 +47,10 @@
     }
   }
 
+  function getRedactedCount() {
+    return document.querySelectorAll("." + REDACTED_CLASS).length;
+  }
+
   function revealWord(word) {
     const hits = window.WDC.findText(word);
     console.log("Hits for", word);
@@ -58,7 +63,7 @@
       return el;
     });
     clearRedactions(hitRedactions);
-    return hits.length;
+    return { hitCount: hits.length, remainingRedacted: getRedactedCount() };
   }
 
   function clearAllRedactions() {
@@ -79,11 +84,13 @@
     console.log("Received message:", message);
     if (message.type === "REVEAL_WORD") {
       console.log("Received REVEAL_WORD message:", message);
-      const count = revealWord(message.query);
-      sendResponse({ count });
+      const { hitCount, remainingRedacted } = revealWord(message.query);
+      sendResponse({ count: hitCount, remainingRedacted });
     } else if (message.type === "CLEAR_REDACTIONS") {
       clearAllRedactions();
-      sendResponse({ ok: true });
+      sendResponse({ ok: true, remainingRedacted: 0 });
+    } else if (message.type === "GET_REDACTION_STATS") {
+      sendResponse({ initialRedacted: initialRedactedCount, currentRedacted: getRedactedCount() });
     }
     return true;
   });
@@ -91,6 +98,7 @@
 
   // Run on enable
   redactWords();
+  initialRedactedCount = getRedactedCount();
 
   // Cleanup on disable
   window.WDC.cleanup = function () {

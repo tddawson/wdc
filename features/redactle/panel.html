@@ -48,11 +48,11 @@
                             Protocol</span>
                     </div>
                 </div>
-                <div class="flex gap-2">
+                <!-- <div class="flex gap-2">
                     <button class="p-2 hover:bg-white/10 rounded-lg text-white/60">
                         <span class="material-symbols-outlined text-sm">close</span>
                     </button>
-                </div>
+                </div> -->
             </div>
             <div class="p-6 flex flex-col gap-6 grow overflow-y-auto">
                 <!-- Guess Input Area -->
@@ -70,13 +70,12 @@
                 </div>
                 <!-- Stats Cards -->
                 <div class="grid grid-cols-2 gap-3">
-                    <!-- <div class="bg-white/5 border border-white/10 p-3 rounded-xl">
+                    <div class="bg-white/5 border border-white/10 p-3 rounded-xl">
                         <span class="text-white/40 text-[10px] uppercase font-bold">Completion</span>
                         <div class="flex items-end gap-2 mt-1">
-                            <span class="text-white text-xl font-bold leading-none" id="completionPercent">4.2%</span>
-                            <span class="text-primary text-[10px] pb-0.5" id="completionChange">▲ 0.8%</span>
+                            <span class="text-white text-xl font-bold leading-none" id="completionPercent">0.0%</span>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="bg-white/5 border border-white/10 p-3 rounded-xl">
                         <span class="text-white/40 text-[10px] uppercase font-bold">Attempts</span>
                         <div class="flex items-end gap-2 mt-1">
@@ -97,12 +96,8 @@
             </div>
             <div class="p-6 mt-auto border-t border-white/10 bg-black/20">
                 <div class="flex items-center justify-between">
-                    <div class="flex flex-col">
-                        <span class="text-white/40 text-[10px] uppercase font-bold">Time Active</span>
-                        <span class="text-white font-mono font-medium">00:14:42</span>
-                    </div>
                     <button
-                        class="bg-white/10 hover:bg-white/20 text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors">
+                        class="bg-white/10 hover:bg-white/20 text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors" id="give-up-btn">
                         Give Up
                     </button>
                 </div>
